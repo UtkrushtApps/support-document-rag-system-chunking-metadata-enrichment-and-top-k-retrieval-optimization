@@ -1,0 +1,18 @@
+services:
+  chroma:
+    image: chromadb/chroma:latest
+    container_name: chroma_db
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/chroma/.chroma/
+  api:
+    build: .
+    container_name: support_fastapi
+    depends_on:
+      - chroma
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    command: ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]
