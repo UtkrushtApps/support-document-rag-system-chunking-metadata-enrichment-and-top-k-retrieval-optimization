@@ -1,0 +1,8 @@
+fastapi
+sentence-transformers
+torch
+chromadb
+requests
+numpy
+scipy
+pandas
